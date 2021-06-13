@@ -1,10 +1,12 @@
 package streamsHomeWork;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static sun.security.validator.PKIXValidator.toArray;
 
 public class HoweWorkWithStreams {
 
@@ -19,7 +21,8 @@ public class HoweWorkWithStreams {
             System.out.println("Input command:\n" +
                     "1 - Select only Windows computers;\n" +
                     "2 - computers with SSD Disk;\n" +
-                    "3 - Show collections of the prices");
+                    "3 - Show collections of the prices\n" +
+                    "4- Sort according to the price and ");
 
             choise = scanner.nextInt();
 
@@ -41,15 +44,23 @@ public class HoweWorkWithStreams {
                 for (Computer elem : twoSSDComputerList) {
                     System.out.println(elem);
                 }
-            }else if (choise == 3) {
+            /*}else if (choise == 3) {
                 List<Computer> priceComputerList = computerList.stream().flatMapToInt(id-> IntStream.of(id.getId())).collect(Collectors.toMap(id::getId()));
 
                 for (Computer elem : priceComputerList) {
                     System.out.println(elem);
 
-                }
+                }*/
 
-            }
+            }else if (choise == 4) {
+                Computer thirdSortedPriceComputerelement = computerList.stream()
+                        .sorted().collect(Collectors.toList())
+                        .stream().skip(2).findFirst().orElse("1").stream()).toArray(String[]::new);
+
+
+                    System.out.println(thirdSortedPriceComputerelement);
+
+                }
         }while (choise != 0);
     }
 }
